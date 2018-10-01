@@ -4,9 +4,9 @@ export const BUILD_TYPES = {
 }
 
 export const BASE_URLS = {
-  STAGE: 'http://stage.stant.com.br/api/',
-  PROD: 'http://web.stant.com.br/api/',
-  LOCAL: 'http://stage.stant.com.br/api/',
+  STAGE: 'http://stage.cnews.com.br/api/',
+  PROD: 'http://web.cnews.com.br/api/',
+  LOCAL: 'http://stage.cnews.com.br/api/',
 }
 
 export const API_ENVIROMENTS = {
