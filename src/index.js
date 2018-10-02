@@ -16,3 +16,10 @@ const render = (Component) => {
 
 render(Application);
 registerServiceWorker();
+
+// Webpack Hot Module Replacement API
+if (module.hot) {
+    module.hot.accept('./', () => {
+        render();
+    });
+}
