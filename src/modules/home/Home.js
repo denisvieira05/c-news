@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux'
 import * as HomeActions from './HomeActions'
+import { Link } from 'react-router-dom'
 
 class Home extends PureComponent {
 
@@ -12,6 +13,8 @@ class Home extends PureComponent {
         const { isFetchingNews, news } = this.props
         return (
             <div>
+
+                <Link to="/auth">Log In</Link>
                 <h1>TESTE HOME</h1>
                 {
                     isFetchingNews ? (
@@ -20,7 +23,7 @@ class Home extends PureComponent {
                             <div>
                                 {
                                     news.map((item, index) => (
-                                        <p>{item.name}</p>
+                                        <p key={index}>{item.title}</p>
                                     ))
                                 }
                             </div>
