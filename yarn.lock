@@ -4347,6 +4347,10 @@ loader-utils@^1.0.2, loader-utils@^1.1.0:
     emojis-list "^2.0.0"
     json5 "^0.5.0"
 
+localized-strings@^0.2.00:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/localized-strings/-/localized-strings-0.2.0.tgz#7a62e6d901a9feb3e0340db8ea3eaec0000a0f40"
+
 locate-path@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/locate-path/-/locate-path-2.0.0.tgz#2b568b265eec944c6d9c0de9c3dbbbca0354cd8e"
@@ -5764,6 +5768,13 @@ react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
 
+react-localization@^1.0.12:
+  version "1.0.12"
+  resolved "https://registry.yarnpkg.com/react-localization/-/react-localization-1.0.12.tgz#df87d5f9b956175e92aa2e548d6d3def4efcaa84"
+  dependencies:
+    localized-strings "^0.2.00"
+    react "^16.0.0"
+
 react-redux@^5.0.7:
   version "5.0.7"
   resolved "http://registry.npmjs.org/react-redux/-/react-redux-5.0.7.tgz#0dc1076d9afb4670f993ffaef44b8f8c1155a4c8"
@@ -5843,7 +5854,7 @@ react-scripts@1.1.5:
   optionalDependencies:
     fsevents "^1.1.3"
 
-react@^16.5.2:
+react@^16.0.0, react@^16.5.2:
   version "16.5.2"
   resolved "https://registry.yarnpkg.com/react/-/react-16.5.2.tgz#19f6b444ed139baa45609eee6dc3d318b3895d42"
   dependencies:

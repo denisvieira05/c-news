@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 import * as AuthenticationActions from '../AuthenticationActions'
+import InputField, { INPUT_FIELD_STYLES } from '../../../components/InputField'
+import Button from '../../../components/Button'
+import Strings from '../../../assets/Strings'
+import Colors from '../../../assets/Colors'
 
 class SignInForm extends Component {
 
@@ -12,14 +16,6 @@ class SignInForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-
-    // this.props.form.validateFields((err, values) => {
-    //   if (!err) {
-    //     const { email, password } = values
-    //     this.props.signIn(email, password)
-    //     console.log('Received values of form: ', values);
-    //   }
-    // });
   }
 
   _onSubmitSignForm() {
@@ -32,32 +28,62 @@ class SignInForm extends Component {
     const { signInError } = this.props
 
     return (
-      <div className="container">
-        <label><b>Email</b></label>
-        <input 
+      <div style={styles.signIncontainer}>
+
+        <h2 style={styles.signInTitleStyle}>{Strings.userArea}</h2>
+
+        <InputField
+          fieldStyle={INPUT_FIELD_STYLES.COLUMN}
+          title={Strings.email}
           type="text" 
           placeholder="Enter Email" 
           onChange={(text) => this.setState({ email: text.target.value })}
           value={this.state.email} 
           />
 
-        <label><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" onChange={(text) => this.setState({ password: text.target.value })} required />
+        <InputField
+          fieldStyle={INPUT_FIELD_STYLES.COLUMN}
+          title={Strings.password}
+          type="password" 
+          onChange={(text) => this.setState({ password: text.target.value })} 
+        />
 
-        <button type="submit" onClick={() => this._onSubmitSignForm()}>Login</button>
+        <Button 
+          onClick={() => this._onSubmitSignForm()} 
+          title={Strings.login}
+        />
 
         <label>{signInError}</label>
 
-        <Link to="signup">Cadastrar</Link>
+        <Link to="signup">{Strings.signUp}</Link>
 
-        <a href="/">Voltar</a>
+        <a href="/">{Strings.back}</a>
+
       </div>
     );
   }
 }
 
 const styles = {
- 
+  signInTitleStyle: {
+    color: Colors.gray,
+    fontSize: '1.5em',
+    textTransform: 'uppercase',
+  },
+  signIncontainer: { 
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  authGeneralContainer: {
+    display: 'grid',
+  },
+  item: {
+    margin: '5px',
+    background: 'tomato',
+    textAlign: 'center',
+    fontSize: '1.5em',
+  }
 }
 
 const mapStateToProps = (state) => ({

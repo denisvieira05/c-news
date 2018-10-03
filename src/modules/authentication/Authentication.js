@@ -14,25 +14,31 @@ class Authentication extends PureComponent {
     }
 
     return (
-      <div
-        className="auth-container">
         <Router>
           <div>
             <Route exact path="/" render={() => (
               <Redirect to="/signin" />
             )} />
-
             <Route exact path="/signin" component={SignInForm} />
             <Route exact path="/signup" component={SignUpForm} />
           </div>
         </Router>
-      </div>
-      
     );
   }
 }
 
 const styles = {
+  authGeneralContainer: {
+    display: 'grid',
+    gridTemplateColumns: '1fr 2fr 1fr',    
+  },
+  item: {
+    margin: '5px',
+    background: 'tomato',
+    textAlign: 'center',
+    fontSize: '1.5em',
+  }
+
 }
 
 const mapStateToProps = (state) => ({
