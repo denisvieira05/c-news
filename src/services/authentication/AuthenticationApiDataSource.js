@@ -51,7 +51,7 @@ class AuthenticationApiDataSource extends ApiDataSource {
     return new Promise((resolve, reject) => {
       firebase.auth().createUserWithEmailAndPassword(email, password)
         .then((snapshot) => {
-          const { refreshToken, uid} = snapshot
+          const { refreshToken, uid} = snapshot.user
 
           this.saveNewUserData(uid, name, email, "image_url")
 

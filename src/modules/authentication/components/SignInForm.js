@@ -13,11 +13,7 @@ class SignInForm extends Component {
     email: '',
     password: '',
   };
-
-  handleSubmit = (e) => {
-    e.preventDefault();
-  }
-
+  
   _onSubmitSignForm() {
     const { password, email} = this.state
 
@@ -36,7 +32,6 @@ class SignInForm extends Component {
           fieldStyle={INPUT_FIELD_STYLES.COLUMN}
           title={Strings.email}
           type="text" 
-          placeholder="Enter Email" 
           onChange={(text) => this.setState({ email: text.target.value })}
           value={this.state.email} 
           />
@@ -69,21 +64,13 @@ const styles = {
     color: Colors.gray,
     fontSize: '1.5em',
     textTransform: 'uppercase',
+    alignSelf: 'center',
+    marginBottom: '2em'
   },
   signIncontainer: { 
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
   },
-  authGeneralContainer: {
-    display: 'grid',
-  },
-  item: {
-    margin: '5px',
-    background: 'tomato',
-    textAlign: 'center',
-    fontSize: '1.5em',
-  }
 }
 
 const mapStateToProps = (state) => ({

@@ -3,10 +3,11 @@ import Colors from '../assets/Colors'
 
 export const INPUT_FIELD_STYLES = { ROW: 'ROW', COLUMN: 'COLUMN'}
 
-const InputField = ({ title, type, fieldStyle }) => (
+const InputField = ({ title, type, fieldStyle, onChange }) => (
   <div style={getCorrectFieldStyle(fieldStyle)}>
     <label style={styles.fieldTitleStyle}>{title}</label>
     <input
+      onChange={onChange}
       type={type}
       style={styles.inputStyle}
     />
@@ -14,7 +15,6 @@ const InputField = ({ title, type, fieldStyle }) => (
 );
 
 const getCorrectFieldStyle = (fieldStyle) => {
-  console.log('fieldstyle',fieldStyle)
   switch (fieldStyle) {
     case INPUT_FIELD_STYLES.ROW: 
       return styles.rowContainerStyle

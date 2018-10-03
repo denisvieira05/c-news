@@ -20,6 +20,9 @@ const styles = {
     textTransform: 'uppercase',
     padding: '0',
     border: 'none',
+    display: 'table-cell',
+    verticalAlign: 'middle',
+    lineHeight: '1.2em',
   }
 }
 

@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 import * as AuthenticationActions from '../AuthenticationActions'
+import InputField, { INPUT_FIELD_STYLES } from '../../../components/InputField'
+import Button from '../../../components/Button'
+import Strings from '../../../assets/Strings'
+import Colors from '../../../assets/Colors'
 
 class SignUpForm extends Component {
 
@@ -11,43 +15,69 @@ class SignUpForm extends Component {
     password: '',
   };
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-
-  }
-
   _onSubmitSignUpForm() {
     const { name, password, email, } = this.state
 
     this.props.signUp(name, email, password)
   }
 
-
   render() {
     const { signUpError } = this.props
 
     return (
-      <div className="container">
-        <label><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" required
-          onChange={(text) => this.setState({ name: text.target.value })}/>
+      <div style={styles.signUpcontainer}>
 
-        <label><b>Email</b></label>
-        <input type="text" placeholder="Enter Email" required
-          onChange={(text) => this.setState({ email: text.target.value })}/>
+        <h2 style={styles.signUpTitleStyle}>{Strings.userArea}</h2>
 
-        <label><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" required
-          onChange={(text) => this.setState({ password: text.target.value })}/>
+        <InputField
+          fieldStyle={INPUT_FIELD_STYLES.COLUMN}
+          title={Strings.userName}
+          type="text"
+          onChange={(text) => this.setState({ name: text.target.value })}
+          value={this.state.name}
+        />
 
-        <button type="submit" onClick={() => this._onSubmitSignUpForm()}>Cadastrar</button>
+        <InputField
+          fieldStyle={INPUT_FIELD_STYLES.COLUMN}
+          title={Strings.email}
+          type="text"
+          onChange={(text) => this.setState({ email: text.target.value })}
+          value={this.state.email}
+        />
+
+        <InputField
+          fieldStyle={INPUT_FIELD_STYLES.COLUMN}
+          title={Strings.password}
+          type="password"
+          onChange={(text) => this.setState({ password: text.target.value })}
+        />
+
+        <Button
+          onClick={() => this._onSubmitSignUpForm()}
+          title={Strings.signUp}
+        />
 
         <label>{signUpError}</label>
 
-        <Link to="/signin">Voltar</Link>
+        <Link to="/signin">{Strings.back}</Link>
+
       </div>
     );
   }
+}
+
+const styles = {
+  signUpTitleStyle: {
+    color: Colors.gray,
+    fontSize: '1.5em',
+    textTransform: 'uppercase',
+    alignSelf: 'center',
+    marginBottom: '2em'
+  },
+  signUpcontainer: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
 }
 
 const mapStateToProps = (state) => ({
@@ -57,9 +87,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   signUp: AuthenticationActions.signUp,
-}
-
-const styles = {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUpForm);
