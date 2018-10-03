@@ -28,9 +28,9 @@ export const updateSignUpError = (authError) => ({
   payload: authError,
 })
 
-export const updateLoggedUser = (loggerUser) => ({
+export const updateLoggedUser = (loggedUser) => ({
   type: UPDATE_LOGGED_USER,
-  payload: loggerUser,
+  payload: loggedUser,
 })
 
 export const signIn = (email, password) => {
@@ -42,7 +42,6 @@ export const signIn = (email, password) => {
       dispatch(isAuthenticating(false))
       dispatch(updateAuthorizationState(true))
       dispatch(updateSignInError(''))
-      console.log("SUCCESS")
       getLoggedUser()
     })
     .catch((error) => {
@@ -85,6 +84,7 @@ export const signOut = () => {
 export const getLoggedUser = () => {
   return async (dispatch) => {
     const loggedUser = await new AuthenticationService().getUser()
+    console.log('getLoggedUser',loggedUser)
     dispatch(updateLoggedUser(loggedUser))
   }
 }

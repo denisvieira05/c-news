@@ -8,6 +8,7 @@ class AuthenticationApiDataSource extends ApiDataSource {
       firebase.database().ref('users/' + this.USER_ID).once('value')
         .then((snapshot) => {
           const user = snapshot.val()
+          
           resolve(user)
         })
     })
@@ -25,7 +26,7 @@ class AuthenticationApiDataSource extends ApiDataSource {
     return new Promise((resolve, reject) => {
       firebase.auth().signInWithEmailAndPassword(email, password)
         .then((snapshot) => {
-          const { refreshToken, uid } = snapshot
+          const { refreshToken, uid } = snapshot.user
 
           localStorage.setItem(UID_LOCALSTORAGE_KEY, uid)
           localStorage.setItem(REFRESH_TOKEN_LOCALSTORAGE_KEY, refreshToken)
@@ -51,7 +52,7 @@ class AuthenticationApiDataSource extends ApiDataSource {
     return new Promise((resolve, reject) => {
       firebase.auth().createUserWithEmailAndPassword(email, password)
         .then((snapshot) => {
-          const { refreshToken, uid} = snapshot
+          const { refreshToken, uid} = snapshot.user
 
           this.saveNewUserData(uid, name, email, "image_url")
 
