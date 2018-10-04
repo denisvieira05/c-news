@@ -1,22 +1,63 @@
-[
+{ "news": [
     {
-        "image_url": "http://imprensa.norcon.com.br/imprensanorcon/img_noticias/336/apala2.JPG",
+        "image_url": "https://lh4.googleusercontent.com/Obb5Vpo0dtbg5XNpx1t5eYxc5SUq_1-6-5tkcTryL22PFP5YT0R4ScefiBo2waB6CNnllYKoAYYJJ_3nd2Y2=w1366-h610-rw",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sit amet purus bibendum, vestibulum augue ut, accumsan libero. Nunc vulputate vestibulum mi, vitae mattis ligula. 1",
         "author_image_url": "https://randomuser.me/api/portraits/men/65.jpg",
-        "author_name": "Denis Vieira",
+        "author_name": "Creed Bratton",
         "categories": [
-            "sports"
+            "POLITICS"
         ],
-        "title": "Titulo da Noticia"
+        "title": "Obama Offers Hopeful Vision While Noting Nation’s Fears"
     },
     {
-        "image_url": "http://imprensa.norcon.com.br/imprensanorcon/img_noticias/336/apala2.JPG",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sit amet purus bibendum, vestibulum augue ut, accumsan libero. Nunc vulputate vestibulum mi, vitae mattis ligula. 1",
+        "image_url": "https://lh4.googleusercontent.com/sOEacfk-3Q377edrlG2SoYV4UsgvNmfa-cmLCk21EIlJVOb6-dUd6xozg5mrPYmf1QnRLu1a-sdJ5csc6eQA=w1366-h610",
+        "description": "One day after Uber updated its API to add ‘content experiences’ for passengers, the U.S. company’s biggest rival — Didi Kuaidi in China — has opened its own platform up by releasing an SDK for developers and third-parties.",
         "author_image_url": "https://randomuser.me/api/portraits/men/65.jpg",
-        "author_name": "Denis Vieira",
+        "author_name": "Creed Bratton",
         "categories": [
-            "sports"
+            "TECH"
         ],
-        "title": "Titulo da Noticia 23"
+        "title": "Didi Kuaidi, The Company Beating Uber In China, Opens Its API To Third Party Apps"
+    },
+    {
+        "image_url": "https://lh4.googleusercontent.com/a2_66lP-abJCyHrVCoErWsjQl8F65kY_dXVz27tBj8G73sXSEmdWOz1tgsNlCaQAjiwglAJNjLmFucwr9rIB=w1366-h610",
+        "description": "Last week, NASA announced a new program called the Planetary Defense Coordination Office (PDCO) which will coordinate NASA’s efforts for detecting and tracking near-Earth objects (NEOs). If a large object comes hurtling toward our planet… ",
+        "author_image_url": "https://randomuser.me/api/portraits/men/65.jpg",
+        "author_name": "Alexandre Henrique Shailesh Zeta-Jones",
+        "categories": [
+            "SCIENCE"
+        ],
+        "title": "NASA Formalizes Efforts To Protect Earth From Asteroids"
+    },
+    {
+        "image_url": null,
+        "description": "The favored in-flight pastime of a group of players including Al Horford, Kent Bazemore and Dennis Schroder is a schoolchildren’s card game with some added twists.",
+        "author_image_url": "https://randomuser.me/api/portraits/men/65.jpg",
+        "author_name": "Creed Bratton",
+        "categories": [
+            "SPORTS"
+        ],
+        "title": "For Some Atlanta Hawks, a Revved-Up Game of Uno Is Diversion No. 1"
+    },
+    {
+        "image_url": null,
+        "description": "Oscar the Grouch has a recycling bin and Big Bird has moved to a tree as the children’s classic debuts on HBO, aiming at a generation that doesn’t distinguish between TV and mobile screens.",
+        "author_image_url": "https://randomuser.me/api/portraits/men/65.jpg",
+        "author_name": "Creed Bratton",
+        "categories": [
+            "TECH"
+        ],
+        "title": "Picking a Windows 10 Security Package"
+    },
+    {
+        "image_url": null,
+        "description": "The Energy Department and the Pentagon have been readying a weapon with a build-it-smaller approach, setting off a philosophical clash in the world of nuclear arms.",
+        "author_image_url": "https://randomuser.me/api/portraits/men/65.jpg",
+        "author_name": "Creed Bratton",
+        "categories": [
+            "SCIENCE"
+        ],
+        "title": "As U.S. Modernizes Nuclear Weapons, ‘Smaller’ Leaves Some Uneasy"
     }
 ]
+}

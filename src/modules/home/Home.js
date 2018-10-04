@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux'
 import * as HomeActions from './HomeActions'
 import { Link } from 'react-router-dom'
+import NewsItem from './components/NewsItem'
 
 class Home extends PureComponent {
   
@@ -12,23 +13,37 @@ class Home extends PureComponent {
   render() {
     const { isFetchingNews, news } = this.props
     return (
-      <div>
-        <h1>TESTE HOME</h1>
+      <div style={styles.newsContainer}>
           {
             isFetchingNews ? (
               <p>Carregando ...</p>
             ) : (
-              <div>
-              {
                 news.map((item, index) => (
-                  <p key={index}>{item.title}</p>
+                  <div style={styles.newItemContainer}>
+                    <NewsItem 
+                      key={index}
+                      title={item.title}
+                      image={item.imageUrl}
+                      author={item.authorName}
+                      authorImage={item.authorImageUrl} 
+                      description={item.description}
+                    />
+                  </div>
                 ))
-              }
-              </div>
             )
           }
       </div>
     )
+  }
+}
+
+const styles = {
+  newsContainer: {
+    display: 'flex',
+    flexWrap: 'wrap'
+  },
+  newItemContainer: {
+    padding: '2em'
   }
 }
 

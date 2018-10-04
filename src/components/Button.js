@@ -12,7 +12,6 @@ const Button = ({ title, onClick }) => (
 
 const styles = {
   default: {
-    display: 'flex',
     backgroundColor: Colors.blue,
     color: Colors.white,
     fontSize: '1em',
