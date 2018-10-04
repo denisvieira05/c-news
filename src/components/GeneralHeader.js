@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as AuthenticationActions from '../modules/authentication/AuthenticationActions'
 import { cNewsLogo } from '../assets/Images'
+import Colors from '../assets/Colors'
 
 const GeneralHeader = (props) => {
 
@@ -12,21 +13,21 @@ const GeneralHeader = (props) => {
   if(!loggedUser){
     getLoggedUser()
   }
-  console.log('loggedUser',loggedUser)
+
   return (
     <div 
       style={styles.generalHeaderStyle}>
       <div style={{ flex: 0.5 }}> <Link to="/"><img src={cNewsLogo} style={styles.logoMain} /></Link></div>
 
       <div style={styles.navContainer}>
+        <label style={styles.navItem}>Sports</label>
+        <label style={styles.navItem}>Politics</label>
+        <label style={styles.navItem}>Business</label>
         {
-          isAuthenticated ? (<Link to="/profile" style={styles.linkStyle}>My Profile</Link> ) : null }
+          isAuthenticated ? (<Link to="/profile" style={styles.linkStyle}>{loggedUser ? loggedUser.username : null}</Link> ) : null }
         {
           isAuthenticated ? (
-              <div>
-                <label style={styles.linkStyle}>{loggedUser ? loggedUser.username : null}  -  </label>
-                <label style={styles.linkStyle} onClick={() => signOut()}>Log Out</label>
-              </div>
+              <label style={styles.linkStyle} onClick={() => signOut()}>Log Out</label>
           ) : (
               <Link to="/auth" style={styles.linkStyle}>Log In</Link>
             )
@@ -50,12 +51,16 @@ const styles = {
     alignSelf: 'center'
   },
   linkStyle: {
-    color: '#FFB427',
+    color: Colors.blue,
   },
   navContainer: {
     display: 'flex',
     flex: 2, 
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
+    alignItems: 'center'
+  },
+  navItem: {
+    color: Colors.gray,
   }
 }
 

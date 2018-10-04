@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { HashRouter as Router, Route, withRouter, Redirect } from 'react-router-dom'
 import SignInForm from './components/SignInForm'
 import SignUpForm from './components/SignUpForm'
-import GeneralHeader from '../../components/GeneralHeader'
 
 class Authentication extends Component {
 
@@ -16,7 +15,6 @@ class Authentication extends Component {
 
     return (
         <div>
-          <GeneralHeader />
           <Router>
             <div>
               <Route exact path="/" render={() => (

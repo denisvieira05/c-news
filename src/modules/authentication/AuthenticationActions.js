@@ -60,7 +60,6 @@ export const signUp = (username, email, password) => {
         dispatch(isAuthenticating(false))
         dispatch(updateAuthorizationState(true))
         dispatch(updateSignUpError(''))
-        console.log('SUCCESS')
     })
     .catch((error) => {
       dispatch(isAuthenticating(false))
@@ -84,7 +83,6 @@ export const signOut = () => {
 export const getLoggedUser = () => {
   return async (dispatch) => {
     const loggedUser = await new AuthenticationService().getUser()
-    console.log('getLoggedUser',loggedUser)
     dispatch(updateLoggedUser(loggedUser))
   }
 }
