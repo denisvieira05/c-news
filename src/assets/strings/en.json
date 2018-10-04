@@ -6,5 +6,13 @@
   "password": "Password",
   "login": "Login",
   "signUp": "Sign Up",
-  "back": "Back"
+  "back": "Back",
+  "myInterests": "My Interests",
+  "politics": "Politics",
+  "business": "Business",
+  "tech": "Tech",
+  "science": "Science",
+  "sports": "Sports",
+  "save": "Save",
+  "backToHome": "Back to Home"
 }
