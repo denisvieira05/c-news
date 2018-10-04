@@ -7,27 +7,32 @@ import Colors from '../../assets/Colors';
 import Strings from '../../assets/Strings';
 
 const DEFAULT_INTERESTS = { 
-  POLITICS: { 
+  POLITICS: {
+    id: 'POLICITS', 
     text: Strings.politics,
     isActive: false,
     color: Colors.red,
   }, 
   BUSINESS: { 
+    id: 'BUSINESS', 
     text: Strings.business,
     isActive: false,
     color: Colors.pink,
   }, 
   TECH: { 
+    id: 'TECH', 
     text: Strings.tech,
     isActive: false,
     color: Colors.blue,
   }, 
   SCIENCE: { 
+    id: 'SCIENCE', 
     text: Strings.science,
     isActive: false,
     color: Colors.green,
   }, 
   SPORTS: { 
+    id: 'SPORTS', 
     text: Strings.sports,
     isActive: false,
     color: Colors.yellow,
@@ -38,6 +43,28 @@ class Profile extends PureComponent {
   state = {
     personalInterests: Object.values(DEFAULT_INTERESTS),
   };
+
+  componentWillMount() {
+    this.props.loadMyInterests()
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.myInterests != this.state.personalInterests) {
+      this._mapDefaultInterestsWithMyInterests(nextProps.myInterests)
+    }
+  }
+
+  _mapDefaultInterestsWithMyInterests(newMyInterests){
+    let newPersonalInterests = Object.values(DEFAULT_INTERESTS)
+    
+    newPersonalInterests.map((item, index) => {
+      if (newMyInterests.includes(item.id)) {
+        item.isActive = true
+      }
+    });
+
+    this._updatePersonalInterests(newPersonalInterests)
+  }
 
   async _onClickCategory(clickedIndex){
     let newPersonalInterests = [...this.state.personalInterests]
@@ -56,7 +83,17 @@ class Profile extends PureComponent {
   }
 
   _onSaveInterests() {
+    const { personalInterests } = this.state
 
+    const personalInterestsSelected = personalInterests.filter((value, index) => ( value.isActive === true))
+
+    let myInterests = []
+    
+    personalInterestsSelected.forEach(element => {
+      myInterests.push(element.id)
+    });
+
+    this.props.saveMyInterests(myInterests)
   }
 
   render() {
@@ -130,10 +167,12 @@ const styles = {
 const mapStateToProps = (state) => ({
   loggedUser: state.authentication.loggedUser,
   isAuthenticated: state.authentication.isAuthenticated,
+  myInterests: state.profile.myInterests
 })
 
 const mapDispatchToProps = {
   loadMyInterests: ProfileActions.loadMyInterests,
+  saveMyInterests: ProfileActions.saveMyInterests,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile)
