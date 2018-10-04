@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux'
 import * as HomeActions from './HomeActions'
 import { Link } from 'react-router-dom'
-import GeneralHeader from '../../components/GeneralHeader'
 
 class Home extends PureComponent {
   
@@ -14,7 +13,6 @@ class Home extends PureComponent {
     const { isFetchingNews, news } = this.props
     return (
       <div>
-        <GeneralHeader />
         <h1>TESTE HOME</h1>
           {
             isFetchingNews ? (
