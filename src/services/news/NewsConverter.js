@@ -1,7 +1,7 @@
 class NewsConverter {
     mapperResponsesToEntities(responses) {
         const entities = []
-        responses.map((response) => {
+        responses.forEach((response) => {
             entities.push(this.mapperResponseToEntity(response))
         })
         return entities

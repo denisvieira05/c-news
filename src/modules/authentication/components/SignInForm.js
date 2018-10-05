@@ -6,6 +6,7 @@ import InputField, { INPUT_FIELD_STYLES } from '../../../components/InputField'
 import Button from '../../../components/Button'
 import Strings from '../../../assets/Strings'
 import Colors from '../../../assets/Colors'
+import injectSheet from 'react-jss'
 
 class SignInForm extends Component {
 
@@ -21,12 +22,12 @@ class SignInForm extends Component {
   }
 
   render() {
-    const { signInError } = this.props
+    const { signInError, classes } = this.props
 
     return (
-      <div style={styles.signIncontainer}>
+      <div className={classes.signIncontainer}>
 
-        <h2 style={styles.signInTitleStyle}>{Strings.userArea}</h2>
+        <h2 className={classes.signInTitleStyle}>{Strings.userArea}</h2>
 
         <InputField
           fieldStyle={INPUT_FIELD_STYLES.COLUMN}
@@ -82,4 +83,4 @@ const mapDispatchToProps = {
   signIn: AuthenticationActions.signIn,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignInForm);
+export default injectSheet(styles)(connect(mapStateToProps, mapDispatchToProps)(SignInForm));

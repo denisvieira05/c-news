@@ -1,5 +1,7 @@
 import React from 'react';
 import Colors from '../assets/Colors'
+import injectSheet from 'react-jss'
+
 
 export const INPUT_FIELD_STYLES = { ROW: 'ROW', COLUMN: 'COLUMN'}
 
@@ -47,4 +49,4 @@ const styles = {
   }
 }
 
-export default InputField
+export default injectSheet(styles)(InputField)

@@ -29,20 +29,6 @@ class Authentication extends Component {
   }
 }
 
-const styles = {
-  authGeneralContainer: {
-    display: 'grid',
-    gridTemplateColumns: '1fr 2fr 1fr',    
-  },
-  item: {
-    margin: '5px',
-    background: 'tomato',
-    textAlign: 'center',
-    fontSize: '1.5em',
-  }
-
-}
-
 const mapStateToProps = (state) => ({
   isAuthenticated: state.authentication.isAuthenticated,
 })

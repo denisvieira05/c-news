@@ -7,8 +7,8 @@ class AuthenticationApiDataSource extends ApiDataSource {
   getUser(userId) {
     return new Promise((resolve, reject) => {
       const user = {
-        username: 'name',
-        email: 'email',
+        username: 'Denis Vieira',
+        email: 'denis@gmail.com',
         profile_picture: 'profileImageUrl'
       } 
       resolve(user)

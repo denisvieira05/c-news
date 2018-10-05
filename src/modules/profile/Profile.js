@@ -1,43 +1,13 @@
 import React, { PureComponent } from 'react';
 import * as ProfileActions from './ProfileActions'
+import * as AuthenticationActions from '../authentication/AuthenticationActions'
 import { connect } from 'react-redux'
 import Tag from './components/Tag'
 import Button from '../../components/Button'
 import Colors from '../../assets/Colors';
 import Strings from '../../assets/Strings';
-
-const DEFAULT_INTERESTS = { 
-  POLITICS: {
-    id: 'POLICITS', 
-    text: Strings.politics,
-    isActive: false,
-    color: Colors.red,
-  }, 
-  BUSINESS: { 
-    id: 'BUSINESS', 
-    text: Strings.business,
-    isActive: false,
-    color: Colors.pink,
-  }, 
-  TECH: { 
-    id: 'TECH', 
-    text: Strings.tech,
-    isActive: false,
-    color: Colors.blue,
-  }, 
-  SCIENCE: { 
-    id: 'SCIENCE', 
-    text: Strings.science,
-    isActive: false,
-    color: Colors.green,
-  }, 
-  SPORTS: { 
-    id: 'SPORTS', 
-    text: Strings.sports,
-    isActive: false,
-    color: Colors.yellow,
-  }, 
-}
+import { DEFAULT_INTERESTS } from './ProfileTypes'
+import injectSheet from 'react-jss'
 
 class Profile extends PureComponent {
   state = {
@@ -49,7 +19,7 @@ class Profile extends PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.myInterests != this.state.personalInterests) {
+    if (nextProps.myInterests !== this.state.personalInterests) {
       this._mapDefaultInterestsWithMyInterests(nextProps.myInterests)
     }
   }
@@ -57,7 +27,7 @@ class Profile extends PureComponent {
   _mapDefaultInterestsWithMyInterests(newMyInterests){
     let newPersonalInterests = Object.values(DEFAULT_INTERESTS)
     
-    newPersonalInterests.map((item, index) => {
+    newPersonalInterests.forEach((item, index) => {
       if (newMyInterests.includes(item.id)) {
         item.isActive = true
       }
@@ -72,7 +42,10 @@ class Profile extends PureComponent {
     await newPersonalInterests.map((item, index) => {
       if (index === clickedIndex){
         item.isActive = !item.isActive
+        return true
       }
+
+      return false
     });
 
     this._updatePersonalInterests(newPersonalInterests)
@@ -98,16 +71,17 @@ class Profile extends PureComponent {
 
   render() {
     const { personalInterests } = this.state 
+    const { signOut, classes } = this.props
     return (
-      <div style={styles.profileContainer}>
+      <div className={classes.profileContainer}>
 
-        <h3 style={styles.interestsTitle}>{Strings.myInterests}</h3>
+        <h3 className={classes.interestsTitle}>{Strings.myInterests}</h3>
 
         <div>
           {
             personalInterests.map((item, index) => (
               <Tag
-                tagStyle={styles.tagItemStyle}
+                tagStyle={classes.tagItemStyle}
                 text={item.text}
                 color={item.color}
                 isActive={item.isActive}
@@ -118,16 +92,20 @@ class Profile extends PureComponent {
           }
         </div>
 
-        <div style={styles.saveInterestsContainer}>
+        <div className={classes.saveInterestsContainer}>
           <Button
             onClick={() => this._onSaveInterests()}
             title={Strings.save}
             />
         </div>
 
-        <div style={styles.backToHomeContainer}>
-          <a href="/" style={styles.backToHomeTextStyle}>{Strings.backToHome}</a>
+
+
+        <div className={classes.backToHomeContainer}>
+          <a href="/" className={classes.backToHomeTextStyle}>{Strings.backToHome}</a>
         </div>
+
+        <label className={classes.linkStyle} onClick={() => signOut()}>Log Out</label>
 
       </div>
     );
@@ -171,8 +149,9 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
+  signOut: AuthenticationActions.signOut,
   loadMyInterests: ProfileActions.loadMyInterests,
   saveMyInterests: ProfileActions.saveMyInterests,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Profile)
+export default injectSheet(styles)(connect(mapStateToProps, mapDispatchToProps)(Profile))

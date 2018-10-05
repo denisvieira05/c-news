@@ -1,5 +1,4 @@
 import ApiDataSource from '../ApiDataSource'
-import InterestsConverter from './InterestsConverter'
 import * as firebase from "firebase";
 
 class InterestsApiDataSource extends ApiDataSource {
@@ -11,9 +10,7 @@ class InterestsApiDataSource extends ApiDataSource {
                     let interests = []
                     if (snapshot.val()) {
                         interests = Object.values(snapshot.val())
-                    //     interests = new InterestsConverter().mapperResponsesToEntities(InterestsResponse)
                     }
-                    console.log('interestsResponse', interests)
                     resolve(interests)
                 })
         })
