@@ -1,10 +1,11 @@
 import React from 'react';
 import Colors from '../assets/Colors'
+import injectSheet from 'react-jss'
 
-const Button = ({ title, onClick }) => (
+
+const Button = ({ title, onClick, classes }) => (
   <button 
-    {...this.props}
-    style={styles.default}
+    className={classes.default}
     onClick={() => onClick()}>
     {title}
   </button>
@@ -25,4 +26,4 @@ const styles = {
   }
 }
 
-export default Button
+export default injectSheet(styles)(Button)

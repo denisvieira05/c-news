@@ -5,10 +5,11 @@ import { connect } from 'react-redux'
 import * as AuthenticationActions from '../modules/authentication/AuthenticationActions'
 import { cNewsLogo } from '../assets/Images'
 import Colors from '../assets/Colors'
+import injectSheet from 'react-jss'
 
 const GeneralHeader = (props) => {
 
-  const { isAuthenticated, signOut, loggedUser, getLoggedUser} = props
+  const { isAuthenticated, signOut, loggedUser, getLoggedUser, classes} = props
 
   if(!loggedUser){
     getLoggedUser()
@@ -16,23 +17,26 @@ const GeneralHeader = (props) => {
 
   return (
     <div 
-      style={styles.generalHeaderStyle}>
-      <div style={{ flex: 0.5 }}> <Link to="/"><img src={cNewsLogo} style={styles.logoMain} /></Link></div>
-
-      <div style={styles.navContainer}>
-        <label style={styles.navItem}>Sports</label>
-        <label style={styles.navItem}>Politics</label>
-        <label style={styles.navItem}>Business</label>
-        {
-          isAuthenticated ? (<Link to="/profile" style={styles.linkStyle}>{loggedUser ? loggedUser.username : null}</Link> ) : null }
-        {
-          isAuthenticated ? (
-              <label style={styles.linkStyle} onClick={() => signOut()}>Log Out</label>
-          ) : (
-              <Link to="/auth" style={styles.linkStyle}>Log In</Link>
-            )
-        }     
+      className={classes.generalHeaderStyle}>
+      <div style={{ flex: 0.5 }}> 
+        <Link to="/"><img src={cNewsLogo} className={classes.logoMain} alt="Main Logo"/></Link>
       </div>
+
+      <div className={classes.navContainer}>
+        <label className={classes.navItem}>Sports</label>
+        <label className={classes.navItem}>Politics</label>
+        <label className={classes.navItem}>Business</label>
+      </div>
+
+      {
+        isAuthenticated ? (<Link to="/profile" className={classes.linkStyle}>{loggedUser ? loggedUser.username : null}</Link>) : null}
+      {
+        isAuthenticated ? (
+          null
+        ) : (
+            <Link to="/auth" className={classes.linkStyle}>Log In</Link>
+          )
+      }     
     </div>
   )
 }
@@ -42,8 +46,10 @@ const styles = {
     display: 'flex', 
     background: 'white',
     justifyContent: 'space-around',
-    paddingLeft: '5em', 
-    borderBottom: '1px solid #ccc'
+    paddingLeft: '8.188em', 
+    paddingRight: '8.188em', 
+    borderBottom: '1px solid #ccc',
+    alignItems: 'center',
   },
   logoMain: {
     width: '3em',
@@ -52,15 +58,23 @@ const styles = {
   },
   linkStyle: {
     color: Colors.blue,
+    textDecoration: 'none',
+    textTransform: 'uppercase',
+    fontSize: '0.875em'
   },
   navContainer: {
     display: 'flex',
     flex: 2, 
-    justifyContent: 'space-around',
-    alignItems: 'center'
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    marginRight: '3.375em', 
   },
   navItem: {
     color: Colors.gray,
+    textDecoration: 'none',
+    textTransform: 'uppercase',
+    fontSize: '0.875em',
+    marginRight: '2em'
   }
 }
 
@@ -70,8 +84,9 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-  signOut: AuthenticationActions.signOut,
   getLoggedUser: AuthenticationActions.getLoggedUser,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(GeneralHeader)
+const StyledGeneralHeader = injectSheet(styles)(GeneralHeader)
+
+export default connect(mapStateToProps, mapDispatchToProps)(StyledGeneralHeader)

@@ -8,5 +8,6 @@ export default {
   pink: '#BD10E0',
   green: '#7CBB37',
   yellow: '#F5A623',
-  lightGray: '#808080'
+  lightGray: '#808080',
+  textGray: '#686868'
 }
