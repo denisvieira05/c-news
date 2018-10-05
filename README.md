@@ -1,6 +1,8 @@
 # C-NEWS
 App to show news around the world .
 
+- App available at:  [https://c-news.herokuapp.com](https://c-news.herokuapp.com)
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -17,6 +19,20 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
+
+## Enviroments
+
+In the app two environments were developed to run the application, API and MOCK. The MOCK environment performs requests and receives responses with false but functional data for the project. The API environment performs requests and receives responses through the firebase by performing HTTP requests to the server, bringing real and dynamic data simulating a real use of the project.
+
+To set app enviroment you should change the file : (./src/services/ServiceDataSource.js)
+
+```
+  constructor(mockDatasource, apiDataSource) {
+    this.BUILD_TYPE = BUILD_TYPES.API // on BUILD_TYPES you can use MOCK or API enviroment .
+    this.mockDatasource = mockDatasource
+    this.apiDataSource = apiDataSource
+  }
+```
 
 
 ## Deployment

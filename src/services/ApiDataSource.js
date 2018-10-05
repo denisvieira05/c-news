@@ -1,5 +1,5 @@
-import { API_ENVIROMENTS, BASE_URLS } from './CONSTANTS'
-import * as firebase from "firebase";
+import { BASE_URLS } from './CONSTANTS'
+import firebase from "firebase/app";
 
 export const UID_LOCALSTORAGE_KEY = 'uid'
 export const REFRESH_TOKEN_LOCALSTORAGE_KEY = 'refresh_token'
@@ -24,8 +24,6 @@ class ApiDataSource {
   }
 
   getBaseUrl() {
-    const { LOCAL, STAGE, PROD } = API_ENVIROMENTS
-
     const action = {
       LOCAL: () => BASE_URLS.LOCAL,
       STAGE: () => BASE_URLS.STAGE,

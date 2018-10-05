@@ -10,14 +10,14 @@ import { DEFAULT_INTERESTS }from '../modules/profile/ProfileTypes'
 
 const GeneralHeader = (props) => {
 
-  const { isAuthenticated, signOut, loggedUser, getLoggedUser, classes} = props
+  const { isAuthenticated, loggedUser, getLoggedUser, classes} = props
 
   if(!loggedUser){
     getLoggedUser()
   }
 
   const defaultInterests = Object.values(DEFAULT_INTERESTS)
-  console.log(defaultInterests)
+  
   return (
     <div 
       className={classes.generalHeaderStyle}>
@@ -26,8 +26,12 @@ const GeneralHeader = (props) => {
       </div>
 
       <div className={classes.navContainer}>
-        { defaultInterests.map((item) => (
-            <label className={classes.navItem}>{item.text}</label>
+        { defaultInterests.map((item, index) => (
+            <label 
+              key={index}
+              className={classes.navItem}>
+              {item.text}
+            </label>
           ))
         }
       </div>

@@ -21,10 +21,7 @@ class Profile extends PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps.myInterests)
     if (nextProps.myInterests !== this.state.personalInterests) {
-
-      console.log('isDifrente',nextProps.myInterests)
       this._mapDefaultInterestsWithMyInterests(nextProps.myInterests)
     }
   }
@@ -191,7 +188,6 @@ const mapStateToProps = (state) => ({
   myInterests: state.profile.myInterests,
   isFetchingMyInterests: state.profile.isFetchingMyInterests,
   isSavingMyInterests: state.profile.isSavingMyInterests,
-  loggedUser: state.authentication.loggedUser,
 })
 
 const mapDispatchToProps = {
