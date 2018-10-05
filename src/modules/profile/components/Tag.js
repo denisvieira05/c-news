@@ -1,41 +1,28 @@
 import React from 'react';
 import Colors from '../../../assets/Colors'
+import injectSheet from 'react-jss'
 
-const Tag = ({ text, onClickTag, color, isActive, tagStyle }) => (
+const Tag = ({ text, onClickTag, color, isActive, classes }) => (
   <label
-    style={getTagColorStyle(color, isActive, tagStyle)}
+    className={classes.tagContainerStyle}
     onClick={() => onClickTag()}
     >
     {text}
   </label>
 );
 
-const getTagColorStyle = (tagColor, isActive, tagStyle) => {
-  let tagColorStyle = {
-    border: '1px solid ' + tagColor,
-    ...styles.container,
-    ...tagStyle
-  }
-
-  if (isActive) {
-    tagColorStyle['background'] = tagColor
-    tagColorStyle['color'] = Colors.white
-  } else {
-    tagColorStyle['background'] = Colors.transparent
-    tagColorStyle['color'] = tagColor
-  }
-
-  return tagColorStyle
-}
-
 const styles = {
-  container: {
+  tagContainerStyle: (props) => ({
+    marginRight: '0.625em',
     fontSize: '1em',
     textTransform: 'uppercase',
     padding: '1em',
     borderRadius: '2em',
     cursor: 'pointer',
-  },
+    border: '1px solid ' + props.color,
+    background: props.isActive ? props.color : Colors.transparent,
+    color: props.isActive ? Colors.white : props.color
+  }),
 }
 
-export default Tag
+export default injectSheet(styles)(Tag)

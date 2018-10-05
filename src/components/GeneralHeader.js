@@ -6,6 +6,7 @@ import * as AuthenticationActions from '../modules/authentication/Authentication
 import { cNewsLogo } from '../assets/Images'
 import Colors from '../assets/Colors'
 import injectSheet from 'react-jss'
+import { DEFAULT_INTERESTS }from '../modules/profile/ProfileTypes'
 
 const GeneralHeader = (props) => {
 
@@ -15,6 +16,8 @@ const GeneralHeader = (props) => {
     getLoggedUser()
   }
 
+  const defaultInterests = Object.values(DEFAULT_INTERESTS)
+  console.log(defaultInterests)
   return (
     <div 
       className={classes.generalHeaderStyle}>
@@ -23,9 +26,10 @@ const GeneralHeader = (props) => {
       </div>
 
       <div className={classes.navContainer}>
-        <label className={classes.navItem}>Sports</label>
-        <label className={classes.navItem}>Politics</label>
-        <label className={classes.navItem}>Business</label>
+        { defaultInterests.map((item) => (
+            <label className={classes.navItem}>{item.text}</label>
+          ))
+        }
       </div>
 
       {

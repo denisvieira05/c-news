@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 import { HashRouter as Router, Route, withRouter, Redirect } from 'react-router-dom'
 import SignInForm from './components/SignInForm'
 import SignUpForm from './components/SignUpForm'
+import injectSheet from 'react-jss'
 
 class Authentication extends Component {
 
   render() {
-    const { isAuthenticated } = this.props
+    const { isAuthenticated, classes } = this.props
 
     if(isAuthenticated) {
       return <Redirect to="/" />
@@ -16,7 +17,7 @@ class Authentication extends Component {
     return (
         <div>
           <Router>
-            <div>
+            <div className={classes.mainContainer}>
               <Route exact path="/" render={() => (
                 <Redirect to="/signin" />
               )} />
@@ -29,8 +30,15 @@ class Authentication extends Component {
   }
 }
 
+const styles = { 
+  mainContainer: {
+    display: 'flex',
+    justifyContent: 'center'
+  }
+}
+
 const mapStateToProps = (state) => ({
   isAuthenticated: state.authentication.isAuthenticated,
 })
 
-export default withRouter(connect(mapStateToProps, null)(Authentication));
+export default injectSheet(styles)(withRouter(connect(mapStateToProps, null)(Authentication)));

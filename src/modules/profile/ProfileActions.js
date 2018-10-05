@@ -1,6 +1,7 @@
 import {
   UPDATE_MY_INTERESTS,
   IS_FETCHING_MY_INTERESTS,
+  IS_SAVING_MY_INTERESTS
 } from './ProfileTypes'
 import InterestsService from '../../services/interests/InterestsService'
 
@@ -16,9 +17,9 @@ export const isFetchingMyInterests = (isFetching) => ({
   payload: isFetching,
 })
 
-export const isSavingMyInterests = (isFetching) => ({
-  type: IS_FETCHING_MY_INTERESTS,
-  payload: isFetching,
+export const isSavingMyInterests = (isSavingMyInterests) => ({
+  type: IS_SAVING_MY_INTERESTS,
+  payload: isSavingMyInterests,
 })
 
 export const loadMyInterests = () => {

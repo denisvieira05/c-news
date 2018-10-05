@@ -7,6 +7,7 @@ import Button from '../../../components/Button'
 import Strings from '../../../assets/Strings'
 import Colors from '../../../assets/Colors'
 import injectSheet from 'react-jss'
+import { ClipLoader } from 'react-spinners';
 
 class SignInForm extends Component {
 
@@ -22,7 +23,7 @@ class SignInForm extends Component {
   }
 
   render() {
-    const { signInError, classes } = this.props
+    const { signInError, classes, isAuthenticating } = this.props
 
     return (
       <div className={classes.signIncontainer}>
@@ -47,13 +48,14 @@ class SignInForm extends Component {
         <Button 
           onClick={() => this._onSubmitSignForm()} 
           title={Strings.login}
+          isLoading={isAuthenticating}
         />
 
-        <label>{signInError}</label>
+        <label className={classes.errorStyle}>{signInError}</label>
 
-        <Link to="signup">{Strings.signUp}</Link>
+        <Link to="signup" className={classes.linkButtonStyle}>{Strings.signUp}</Link>
 
-        <a href="/">{Strings.back}</a>
+        <a href="/" className={classes.linkButtonStyle}>{Strings.backToHome}</a>
 
       </div>
     );
@@ -66,11 +68,24 @@ const styles = {
     fontSize: '1.5em',
     textTransform: 'uppercase',
     alignSelf: 'center',
-    marginBottom: '2em'
+    marginBottom: '2em',
+    marginTop: '2em'
+  },
+  errorStyle: {
+    alignSelf: 'center',
+    color: Colors.red,
+    marginTop: '1em',
+  },
+  linkButtonStyle: {
+    alignSelf: 'center',
+    marginTop: '1em',
+    textDecoration: 'none',
+    color: Colors.blue
   },
   signIncontainer: { 
     display: 'flex',
     flexDirection: 'column',
+    width: '25em',
   },
 }
 
