@@ -1,13 +1,25 @@
 import React from 'react';
 import Colors from '../assets/Colors'
 import injectSheet from 'react-jss'
+import { ClipLoader } from 'react-spinners';
 
 
-const Button = ({ title, onClick, classes }) => (
+const Button = ({ title, onClick, classes, isLoading, style }) => (
   <button 
+    style={style}
     className={classes.default}
     onClick={() => onClick()}>
-    {title}
+    {
+      isLoading ? (
+        <ClipLoader
+          sizeUnit={"px"}
+          size={20}
+          color={Colors.white}
+          loading={isLoading}
+        />
+      ) :
+         title 
+    }
   </button>
 );
 

@@ -23,7 +23,7 @@ class SignUpForm extends Component {
   }
 
   render() {
-    const { signUpError, classes } = this.props
+    const { signUpError, classes, isAuthenticating } = this.props
 
     return (
       <div className={classes.signUpcontainer}>
@@ -56,11 +56,12 @@ class SignUpForm extends Component {
         <Button
           onClick={() => this._onSubmitSignUpForm()}
           title={Strings.signUp}
+          isLoading={isAuthenticating}
         />
 
-        <label>{signUpError}</label>
+        <label className={classes.errorStyle}>{signUpError}</label>
 
-        <Link to="/signin">{Strings.back}</Link>
+        <Link to="signin" className={classes.linkButtonStyle}>{Strings.back}</Link>
 
       </div>
     );
@@ -75,9 +76,21 @@ const styles = {
     alignSelf: 'center',
     marginBottom: '2em'
   },
+  errorStyle: {
+    alignSelf: 'center',
+    color: Colors.red,
+    marginTop: '1em',
+  },
+  linkButtonStyle: {
+    alignSelf: 'center',
+    marginTop: '1em',
+    textDecoration: 'none',
+    color: Colors.blue
+  },
   signUpcontainer: {
     display: 'flex',
     flexDirection: 'column',
+    width: '25em',
   },
 }
 

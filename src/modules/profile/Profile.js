@@ -8,6 +8,7 @@ import Colors from '../../assets/Colors';
 import Strings from '../../assets/Strings';
 import { DEFAULT_INTERESTS } from './ProfileTypes'
 import injectSheet from 'react-jss'
+import { ClipLoader } from 'react-spinners';
 
 class Profile extends PureComponent {
   state = {
@@ -16,10 +17,14 @@ class Profile extends PureComponent {
 
   componentWillMount() {
     this.props.loadMyInterests()
+    this.props.getLoggedUser()
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log(nextProps.myInterests)
     if (nextProps.myInterests !== this.state.personalInterests) {
+
+      console.log('isDifrente',nextProps.myInterests)
       this._mapDefaultInterestsWithMyInterests(nextProps.myInterests)
     }
   }
@@ -71,41 +76,54 @@ class Profile extends PureComponent {
 
   render() {
     const { personalInterests } = this.state 
-    const { signOut, classes } = this.props
+    const { signOut, classes, isFetchingMyInterests, isSavingMyInterests, loggedUser } = this.props
     return (
       <div className={classes.profileContainer}>
 
-        <h3 className={classes.interestsTitle}>{Strings.myInterests}</h3>
+        <div className={classes.welcomeContainer}>
+          <label
+            className={classes.welcomeTitle}>{Strings.welcome},  </label>
+
+          <label
+            className={classes.welcomeTitleUsername}>
+            {loggedUser ? loggedUser.username : null} </label>
+        </div>
 
         <div>
-          {
-            personalInterests.map((item, index) => (
-              <Tag
-                tagStyle={classes.tagItemStyle}
-                text={item.text}
-                color={item.color}
-                isActive={item.isActive}
-                key={index}
-                onClickTag={() => this._onClickCategory(index)}
-              />
-            ))
+          <label className={classes.interestsTitle}>{Strings.myInterests}</label>
+          { isFetchingMyInterests ? (
+              <div
+                className={classes.spinnerContainerStyle}>
+                <ClipLoader
+                  sizeUnit={"px"}
+                  size={50}
+                  color={Colors.gray}
+                  loading={true}
+                />
+              </div>
+            ) : personalInterests.map((item, index) => (
+                <Tag
+                  text={item.text}
+                  color={item.color}
+                  isActive={item.isActive}
+                  key={index}
+                  onClickTag={() => this._onClickCategory(index)}
+                /> ))
           }
         </div>
 
         <div className={classes.saveInterestsContainer}>
           <Button
+            style={styles.saveButtonStyle}
             onClick={() => this._onSaveInterests()}
             title={Strings.save}
+            isLoading={isSavingMyInterests}
             />
         </div>
+        
+        <a href="/" className={classes.linkButtonStyle}>{Strings.backToHome}</a>
 
-
-
-        <div className={classes.backToHomeContainer}>
-          <a href="/" className={classes.backToHomeTextStyle}>{Strings.backToHome}</a>
-        </div>
-
-        <label className={classes.linkStyle} onClick={() => signOut()}>Log Out</label>
+        <label className={classes.linkButtonStyle} onClick={() => signOut()}>Log Out</label>
 
       </div>
     );
@@ -113,8 +131,21 @@ class Profile extends PureComponent {
 }
 
 const styles = {
-  tagItemStyle: {
-    marginRight: '0.5em'
+  welcomeContainer:{
+    marginTop: '3em',
+    marginBottom: '3em',
+  },
+  welcomeTitle: {
+    fontSize: '1.813em',
+    textTransform: 'uppercase',
+  },
+  welcomeTitleUsername: {
+    fontSize: '1.813em',
+    textTransform: 'uppercase',
+    color: Colors.blue
+  },
+  saveButtonStyle:{
+    width: '15.125em'
   },
   interestsTitle: {
     display: 'flex',
@@ -123,10 +154,16 @@ const styles = {
     color: Colors.gray,
     marginBottom: '2em'
   },
+  linkButtonStyle: {
+    alignSelf: 'center',
+    marginTop: '1em',
+    textDecoration: 'none',
+    color: Colors.blue
+  },
   saveInterestsContainer: {
     display: 'flex',
-    marginTop: '2em',
-    marginBottom: '2em'
+    marginTop: '3.563em',
+    marginBottom: '1.688em'
   },
   backToHomeContainer: {
     display: 'flex',
@@ -139,19 +176,29 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column'
+  },
+  spinnerContainerStyle: {
+    display: 'flex',
+    marginTop: '5em',
+    alignItems: 'center',
+    justifyContent: 'center',
   }
 }
 
 const mapStateToProps = (state) => ({
   loggedUser: state.authentication.loggedUser,
   isAuthenticated: state.authentication.isAuthenticated,
-  myInterests: state.profile.myInterests
+  myInterests: state.profile.myInterests,
+  isFetchingMyInterests: state.profile.isFetchingMyInterests,
+  isSavingMyInterests: state.profile.isSavingMyInterests,
+  loggedUser: state.authentication.loggedUser,
 })
 
 const mapDispatchToProps = {
   signOut: AuthenticationActions.signOut,
   loadMyInterests: ProfileActions.loadMyInterests,
   saveMyInterests: ProfileActions.saveMyInterests,
+  getLoggedUser: AuthenticationActions.getLoggedUser,
 }
 
 export default injectSheet(styles)(connect(mapStateToProps, mapDispatchToProps)(Profile))

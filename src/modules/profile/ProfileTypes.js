@@ -3,6 +3,8 @@ import Strings from '../../assets/Strings';
 
 export const UPDATE_MY_INTERESTS = 'UPDATE_MY_INTERESTS'
 export const IS_FETCHING_MY_INTERESTS = 'IS_FETCHING_MY_INTERESTS'
+export const IS_SAVING_MY_INTERESTS = 'IS_SAVING_MY_INTERESTS'
+
 export const DEFAULT_INTERESTS = {
   POLITICS: {
     id: 'POLITICS',
