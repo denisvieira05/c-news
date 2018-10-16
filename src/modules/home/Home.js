@@ -88,7 +88,6 @@ const styles = {
   newsContainer: {
     display: "flex",
     flexWrap: "wrap",
-    marginTop: "3.313em"
   },
   newItemContainer: {
     padding: "1.875em"

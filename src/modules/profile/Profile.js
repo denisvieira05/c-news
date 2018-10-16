@@ -21,10 +21,7 @@ class Profile extends PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps.myInterests)
     if (nextProps.myInterests !== this.state.personalInterests) {
-
-      console.log('isDifrente',nextProps.myInterests)
       this._mapDefaultInterestsWithMyInterests(nextProps.myInterests)
     }
   }
