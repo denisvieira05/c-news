@@ -1,5 +1,8 @@
 import ApiDataSource, { UID_LOCALSTORAGE_KEY, REFRESH_TOKEN_LOCALSTORAGE_KEY }  from '../ApiDataSource'
 import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/database";
+
 
 class AuthenticationApiDataSource extends ApiDataSource {
 

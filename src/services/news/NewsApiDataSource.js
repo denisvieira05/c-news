@@ -1,6 +1,7 @@
 import ApiDataSource from '../ApiDataSource'
 import NewsConverter from './NewsConverter'
 import firebase from "firebase/app";
+import "firebase/database"
 
 class NewsApiDataSource extends ApiDataSource {
 
