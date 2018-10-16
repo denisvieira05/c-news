@@ -188,7 +188,6 @@ const mapStateToProps = (state) => ({
   myInterests: state.profile.myInterests,
   isFetchingMyInterests: state.profile.isFetchingMyInterests,
   isSavingMyInterests: state.profile.isSavingMyInterests,
-  loggedUser: state.authentication.loggedUser,
 })
 
 const mapDispatchToProps = {

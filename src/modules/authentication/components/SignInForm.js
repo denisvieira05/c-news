@@ -7,7 +7,6 @@ import Button from '../../../components/Button'
 import Strings from '../../../assets/Strings'
 import Colors from '../../../assets/Colors'
 import injectSheet from 'react-jss'
-import { ClipLoader } from 'react-spinners';
 
 class SignInForm extends Component {
 

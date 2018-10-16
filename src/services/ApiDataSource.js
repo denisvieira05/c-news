@@ -1,5 +1,5 @@
 import { API_ENVIROMENTS, BASE_URLS } from './CONSTANTS'
-import * as firebase from "firebase";
+import firebase from "firebase";
 
 export const UID_LOCALSTORAGE_KEY = 'uid'
 export const REFRESH_TOKEN_LOCALSTORAGE_KEY = 'refresh_token'
@@ -18,14 +18,13 @@ class ApiDataSource {
   constructor(apiEnviroment) {
     this.USER_ID = localStorage.getItem(UID_LOCALSTORAGE_KEY)
     this.API_ENVIROMENT = apiEnviroment
+    
     if (!firebase.apps.length) {
       firebase.initializeApp(firebaseConfig)
     }
   }
 
   getBaseUrl() {
-    const { LOCAL, STAGE, PROD } = API_ENVIROMENTS
-
     const action = {
       LOCAL: () => BASE_URLS.LOCAL,
       STAGE: () => BASE_URLS.STAGE,

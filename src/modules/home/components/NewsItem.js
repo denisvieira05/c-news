@@ -93,7 +93,6 @@ const styles = {
   },
   readMoreText: {
     color: Colors.white,
-    zIndex: "1",
     margin: "1em 2em",
     cursor: "pointer",
     zIndex: 0

@@ -46,7 +46,7 @@ class Home extends PureComponent {
 
   render() {
     const { isFetchingNews, news, classes } = this.props
-    console.log('')
+
     return (
       <div>
         {isFetchingNews ? (
@@ -109,4 +109,4 @@ const mapDispatchToProps = {
   loadNews: HomeActions.loadNews,
 }
 
-export default injectSheet(styles)(connect(mapStateToProps, mapDispatchToProps)(Home))
+export default connect(mapStateToProps, mapDispatchToProps)(injectSheet(styles)(Home))

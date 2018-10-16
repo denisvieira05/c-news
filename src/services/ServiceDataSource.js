@@ -9,8 +9,6 @@ class ServiceDataSource {
   }
 
   datasource() {
-    const { MOCK, API } = BUILD_TYPES
-
     const action = {
       MOCK: () => new this.mockDatasource(),
       API: () => new this.apiDataSource(API_ENVIROMENTS.STAGE),
