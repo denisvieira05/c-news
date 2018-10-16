@@ -95,14 +95,16 @@ const styles = {
     color: Colors.white,
     zIndex: "1",
     margin: "1em 2em",
-    cursor: "pointer"
+    cursor: "pointer",
+    zIndex: 0
   },
   blackTransparentContainer: {
     position: "absolute",
     width: "100%",
     height: "100%",
     backgroundColor: "black",
-    opacity: "0.3"
+    opacity: "0.3",
+    zIndex: 0
   },
   newsMainImageContainer: {
     display: "flex",

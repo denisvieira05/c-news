@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as AuthenticationActions from '../modules/authentication/AuthenticationActions'
@@ -9,51 +9,63 @@ import injectSheet from 'react-jss'
 import { DEFAULT_INTERESTS } from '../modules/profile/ProfileTypes'
 import SideMenu from './SideMenu'
 
-const GeneralHeader = (props) => {
+class GeneralHeader extends PureComponent {
 
-  const { isAuthenticated, loggedUser, getLoggedUser, classes} = props
+  state = {
+    showSideMenu: false,
+  };
 
-  if(!loggedUser){
-    getLoggedUser()
+  render() {
+
+    const { isAuthenticated, loggedUser, getLoggedUser, classes } = this.props
+
+    if (!loggedUser) {
+      getLoggedUser()
+    }
+
+    const toogleSideMenu = () => {
+      console.log('change', this.state.showSideMenu)
+      this.setState({ showSideMenu: !this.state.showSideMenu });
+    };
+
+    const defaultInterests = Object.values(DEFAULT_INTERESTS)
+
+    return (
+    <div className={classes.mainHeaderContainer}>
+      <div className={classes.generalHeaderStyle}>
+
+        <SideMenu show={this.state.showSideMenu} />
+
+        <div className={classes.sideMenuIconContainer}>
+          <img src={menuIcon} className={classes.sideMenuIcon} alt="Side Menu Icon" onClick={() => toogleSideMenu()} />
+        </div>
+
+        <div className={classes.logoMainContainer}>
+          <Link to="/">
+            <img src={cNewsLogo} className={classes.logoMain} alt="Main Logo" />
+          </Link>
+        </div>
+
+        <div className={classes.navContainer}>
+          {defaultInterests.map((item, index) => (
+            <label key={index} className={classes.navItem}>
+              {item.text}
+            </label>
+          ))}
+
+          {isAuthenticated ? <Link to="/profile" className={classes.linkStyle}>
+            {loggedUser ? loggedUser.username : null}
+          </Link> : null}
+          {isAuthenticated ? null : <Link to="/auth" className={classes.linkStyle}>
+            Log In
+            </Link>}
+        </div>
+        
+      </div>
+    </div>
+    );
   }
 
-  const defaultInterests = Object.values(DEFAULT_INTERESTS)
-
-  return (
-    <div className={classes.generalHeaderStyle}>
-
-      {/* <SideMenu /> */}
-
-      <div className={classes.sideMenuIconContainer}>
-        <img src={menuIcon} className={classes.sideMenuIcon} alt="Side Menu Icon" />
-      </div>
-
-      <div className={classes.logoMainContainer}>
-        <Link to="/">
-          <img src={cNewsLogo} className={classes.logoMain} alt="Main Logo" />
-        </Link>
-      </div>
-
-      <div className={classes.navContainer}>
-        {defaultInterests.map((item, index) => (
-          <label 
-            key={index}
-            className={classes.navItem}
-          >
-            {item.text}
-          </label>
-        ))}
-
-        {isAuthenticated ? <Link to="/profile" className={classes.linkStyle}>
-          {loggedUser ? loggedUser.username : null}
-        </Link> : null}
-        {isAuthenticated ? null : <Link to="/auth" className={classes.linkStyle}>
-          Log In
-          </Link>}
-      </div>
-
-    </div>
-  )
 }
 
 const styles = {
@@ -65,11 +77,16 @@ const styles = {
       display: "flex !important"
     }
   },
+  mainHeaderContainer: {
+    position: "fixed",
+    width: "100%",
+    top: 0,
+    zIndex: 1
+  },
   sideMenuIconContainer: {
     position: "absolute",
     left: "2em"
   },
-  logoMainContainer: {},
   sideMenuIcon: {
     width: "1.500em",
     height: "1.188em"

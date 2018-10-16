@@ -86,19 +86,20 @@ class Home extends PureComponent {
 
 const styles = {
   newsContainer: {
-    display: 'flex',
-    flexWrap: 'wrap',
+    display: "flex",
+    flexWrap: "wrap",
+    marginTop: "3.313em"
   },
   newItemContainer: {
-    padding: '1.875em'
+    padding: "1.875em"
   },
   spinnerContainerStyle: {
-    display: 'flex',
-    marginTop: '5em',
-    alignItems: 'center',
-    justifyContent: 'center',
+    display: "flex",
+    marginTop: "5em",
+    alignItems: "center",
+    justifyContent: "center"
   }
-}
+};
 
 const mapStateToProps = (state) => ({
   news: state.home.news,
