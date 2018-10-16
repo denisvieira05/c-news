@@ -1,5 +1,5 @@
 import ApiDataSource from '../ApiDataSource'
-import * as firebase from "firebase";
+import firebase from "firebase/app";
 
 class InterestsApiDataSource extends ApiDataSource {
 

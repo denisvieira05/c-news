@@ -46,6 +46,7 @@ class Home extends PureComponent {
 
   render() {
     const { isFetchingNews, news, classes } = this.props
+
     return (
       <div>
         {isFetchingNews ? (
@@ -85,19 +86,19 @@ class Home extends PureComponent {
 
 const styles = {
   newsContainer: {
-    display: 'flex',
-    flexWrap: 'wrap',
+    display: "flex",
+    flexWrap: "wrap",
   },
   newItemContainer: {
-    padding: '1.875em'
+    padding: "1.875em"
   },
   spinnerContainerStyle: {
-    display: 'flex',
-    marginTop: '5em',
-    alignItems: 'center',
-    justifyContent: 'center',
+    display: "flex",
+    marginTop: "5em",
+    alignItems: "center",
+    justifyContent: "center"
   }
-}
+};
 
 const mapStateToProps = (state) => ({
   news: state.home.news,
@@ -108,4 +109,4 @@ const mapDispatchToProps = {
   loadNews: HomeActions.loadNews,
 }
 
-export default injectSheet(styles)(connect(mapStateToProps, mapDispatchToProps)(Home))
+export default connect(mapStateToProps, mapDispatchToProps)(injectSheet(styles)(Home))

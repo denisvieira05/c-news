@@ -18,6 +18,7 @@ class ApiDataSource {
   constructor(apiEnviroment) {
     this.USER_ID = localStorage.getItem(UID_LOCALSTORAGE_KEY)
     this.API_ENVIROMENT = apiEnviroment
+    
     if (!firebase.apps.length) {
       firebase.initializeApp(firebaseConfig)
     }

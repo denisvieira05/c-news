@@ -11,9 +11,11 @@ const MainApp = ({ isAuthenticated }) => {
     return (
         <div>
             <GeneralHeader />
-            <Route exact path="/auth" component={Authentication} />
-            <Route exact path="/" component={Home} />
-            <PrivateRoute exact path="/profile" component={Profile} isAuthenticated={isAuthenticated}/>
+            <div style={{marginTop: "3.313em"}}>
+                <Route exact path="/auth" component={Authentication} />
+                <Route exact path="/" component={Home} />
+                <PrivateRoute exact path="/profile" component={Profile} isAuthenticated={isAuthenticated} />
+            </div>
         </div>
     )
 };
