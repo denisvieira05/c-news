@@ -46,6 +46,7 @@ class Home extends PureComponent {
 
   render() {
     const { isFetchingNews, news, classes } = this.props
+    console.log('')
     return (
       <div>
         {isFetchingNews ? (
