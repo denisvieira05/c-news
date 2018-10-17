@@ -202,9 +202,6 @@ const styles = {
   "@media screen and (max-width: 750px)": {
     tagsContainer: {
       flexDirection: "column",
-      '> label': {
-        marginBottom: '1em'
-      },
     },
   },
 };
