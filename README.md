@@ -34,6 +34,7 @@ To set app enviroment you should change the file : (./src/services/ServiceDataSo
   }
 ```
 
+PS: To run project on API build type you need define .env variables to firebase credentials .
 
 ## Deployment
 

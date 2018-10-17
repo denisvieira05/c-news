@@ -92,32 +92,35 @@ class Profile extends PureComponent {
           </label>
         </div>
 
-        <div>
+        <section>
           <label className={classes.interestsTitle}>
             {Strings.myInterests}
           </label>
-          {isFetchingMyInterests ? (
-            <div className={classes.spinnerContainerStyle}>
-              <ClipLoader
-                sizeUnit={"px"}
-                size={50}
-                color={Colors.gray}
-                loading
-              />
-            </div>
-          ) : (
-            personalInterests.map((item, index) => (
-              <Tag
-                text={item.text}
-                color={item.color}
-                isActive={item.isActive}
-                key={index}
-                onClickTag={() => this._onClickCategory(index)}
-              />
-            ))
-          )}
-        </div>
 
+          <div className={classes.tagsContainer}>
+            {isFetchingMyInterests ? (
+              <div className={classes.spinnerContainerStyle}>
+                <ClipLoader
+                  sizeUnit={"px"}
+                  size={50}
+                  color={Colors.gray}
+                  loading
+                />
+              </div>
+            ) : (
+              personalInterests.map((item, index) => (
+                <Tag
+                  text={item.text}
+                  color={item.color}
+                  isActive={item.isActive}
+                  key={index}
+                  onClickTag={() => this._onClickCategory(index)}
+                />
+              ))
+            )}
+          </div>
+        </section>
+        
         <div className={classes.saveInterestsContainer}>
           <Button
             style={styles.saveButtonStyle}
@@ -140,6 +143,10 @@ class Profile extends PureComponent {
 }
 
 const styles = {
+  tagsContainer: {
+    display: "flex",
+    flexDirection: "row"
+  },
   welcomeContainer: {
     marginTop: "3em",
     marginBottom: "3em"
@@ -191,7 +198,15 @@ const styles = {
     marginTop: "5em",
     alignItems: "center",
     justifyContent: "center"
-  }
+  },
+  "@media screen and (max-width: 750px)": {
+    tagsContainer: {
+      flexDirection: "column",
+      '> label': {
+        marginBottom: '1em'
+      },
+    },
+  },
 };
 
 const mapStateToProps = state => ({

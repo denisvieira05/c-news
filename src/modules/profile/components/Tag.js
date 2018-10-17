@@ -11,10 +11,12 @@ const Tag = ({ text, onClickTag, classes }) => (
 const styles = {
   tagContainerStyle: props => ({
     marginRight: "0.625em",
+    marginBottom: "0.625em",
     fontSize: "1em",
     textTransform: "uppercase",
     padding: "1em",
     borderRadius: "2em",
+    textAlign: "center",
     cursor: "pointer",
     border: "1px solid " + props.color,
     background: props.isActive ? props.color : Colors.transparent,
