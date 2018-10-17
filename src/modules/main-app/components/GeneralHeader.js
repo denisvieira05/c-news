@@ -1,13 +1,14 @@
 import React, { PureComponent } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import * as AuthenticationActions from "../modules/authentication/AuthenticationActions";
-import { cNewsLogo, menuIcon } from "../assets/Images";
-import Colors from "../assets/Colors";
-import Strings from "../assets/Strings";
+import * as AuthenticationActions from "../../authentication/AuthenticationActions";
+import { cNewsLogo, menuIcon } from "../../../assets/Images";
+import Colors from "../../../assets/Colors";
+import Strings from "../../../assets/Strings";
 import injectSheet from "react-jss";
-import { DEFAULT_INTERESTS } from "../modules/profile/ProfileTypes";
-import SideMenu from "./SideMenu";
+import { DEFAULT_INTERESTS } from "../../profile/ProfileTypes";
+import SideMenu from "../../../components/SideMenu";
+import NavList from "../../../components/NavList";
 
 class GeneralHeader extends PureComponent {
   state = {
@@ -55,12 +56,10 @@ class GeneralHeader extends PureComponent {
             </Link>
           </div>
 
-          <div className={classes.navContainer}>
-            {defaultInterests.map((item, index) => (
-              <label key={index} className={classes.navItem}>
-                {item.text}
-              </label>
-            ))}
+          <div className={classes.generalNavContainer}>
+            <NavList
+              items={defaultInterests}
+            />
 
             {isAuthenticated ? (
               <Link to="/profile" className={classes.linkStyle}>
@@ -83,9 +82,12 @@ const styles = {
     sideMenuIconContainer: {
       display: "none"
     },
-    navContainer: {
+    generalNavContainer: {
       display: "flex !important"
     }
+  },
+  generalNavContainer: {
+    display: "none"
   },
   mainHeaderContainer: {
     position: "fixed",
@@ -120,20 +122,6 @@ const styles = {
     textDecoration: "none",
     textTransform: "uppercase",
     fontSize: "0.875em"
-  },
-  navContainer: {
-    display: "none",
-    flex: 2,
-    justifyContent: "flex-end",
-    alignItems: "center",
-    marginRight: "3.375em"
-  },
-  navItem: {
-    color: Colors.gray,
-    textDecoration: "none",
-    textTransform: "uppercase",
-    fontSize: "0.875em",
-    marginRight: "2em"
   }
 };
 

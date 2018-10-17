@@ -4,7 +4,7 @@ import { HashRouter as Router, Route, withRouter } from "react-router-dom";
 import Home from "../home/Home";
 import Authentication from "../authentication/Authentication";
 import Profile from "../profile/Profile";
-import GeneralHeader from "../../components/GeneralHeader";
+import GeneralHeader from "./components/GeneralHeader";
 import PrivateRoute from "../../components/PrivateRoute";
 
 const MainApp = ({ isAuthenticated }) => {

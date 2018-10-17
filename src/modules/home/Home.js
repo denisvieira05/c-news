@@ -58,7 +58,7 @@ class Home extends PureComponent {
               <NewsItem
                 categoryName={item.categories[0]}
                 style={styles.newItemContainer}
-                isFeaturedStyle={index === 0 ? true : false}
+                isFeaturedStyle={index === 0}
                 key={index}
                 title={item.title}
                 image={this._getCorrectNewsImageUrlOrObject(

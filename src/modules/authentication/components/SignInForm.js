@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import * as AuthenticationActions from "../AuthenticationActions";
-import InputField, { INPUT_FIELD_STYLES } from "../../../components/InputField";
+import InputField from "../../../components/InputField";
 import Button from "../../../components/Button";
 import Strings from "../../../assets/Strings";
 import Colors from "../../../assets/Colors";
@@ -14,7 +14,8 @@ class SignInForm extends Component {
     password: ""
   };
 
-  _onSubmitSignForm() {
+  _onSubmitSignForm(event) {
+    event.preventDefault();
     const { password, email } = this.state;
 
     this.props.signIn(email, password);
@@ -24,28 +25,33 @@ class SignInForm extends Component {
     const { signInError, classes, isAuthenticating } = this.props;
 
     return (
-      <div className={classes.signIncontainer}>
+      <form
+        className={classes.signIncontainer}
+        onSubmit={event => this._onSubmitSignForm(event)}
+      >
         <h2 className={classes.signInTitleStyle}>{Strings.userArea}</h2>
 
         <InputField
-          fieldStyle={INPUT_FIELD_STYLES.COLUMN}
+          isColumnStyle
           title={Strings.email}
           type="text"
+          inputName="email"
           onChange={text => this.setState({ email: text.target.value })}
           value={this.state.email}
         />
 
         <InputField
-          fieldStyle={INPUT_FIELD_STYLES.COLUMN}
+          isColumnStyle
           title={Strings.password}
+          inputName="senha"
           type="password"
           onChange={text => this.setState({ password: text.target.value })}
         />
 
         <Button
-          onClick={() => this._onSubmitSignForm()}
           title={Strings.login}
           isLoading={isAuthenticating}
+          type="submit"
         />
 
         <label className={classes.errorStyle}>{signInError}</label>
@@ -57,7 +63,7 @@ class SignInForm extends Component {
         <a href="/" className={classes.linkButtonStyle}>
           {Strings.backToHome}
         </a>
-      </div>
+      </form>
     );
   }
 }

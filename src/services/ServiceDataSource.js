@@ -5,6 +5,8 @@ class ServiceDataSource {
     this.BUILD_TYPE = BUILD_TYPES.API;
     this.mockDatasource = mockDatasource;
     this.apiDataSource = apiDataSource;
+
+    console.log(process.env.REACT_APP_SECRET_CODE);
   }
 
   datasource() {

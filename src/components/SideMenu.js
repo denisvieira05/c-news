@@ -5,6 +5,7 @@ import injectSheet from "react-jss";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import * as AuthenticationActions from "../modules/authentication/AuthenticationActions";
+import NavList from "./NavList";
 
 const SideMenu = ({
   items,
@@ -14,16 +15,11 @@ const SideMenu = ({
   onClickItem
 }) => (
   <div className={classes.sideMenuContainer}>
-    {items.map((item, index) => (
-      <span
-        href="/"
-        className={classes.navItem}
-        key={index}
-        onClick={() => onClickItem(index)}
-      >
-        {item.text}
-      </span>
-    ))}
+    <NavList
+      isVertical
+      items={items}
+        onClickNavItem={clickedIndex => onClickItem(clickedIndex)}
+    />
     {isAuthenticated ? (
       <Link
         to="/profile"
@@ -71,17 +67,6 @@ const styles = {
     marginTop: "1.563em",
     fontWeight: "bold",
     display: "block"
-  },
-  navItem: {
-    color: Colors.gray,
-    textDecoration: "none",
-    textTransform: "uppercase",
-    fontSize: "1em",
-    marginLeft: "2em",
-    marginTop: "1.563em",
-    display: "block",
-    transition: "0.3s",
-    cursor: "pointer"
   }
 };
 
