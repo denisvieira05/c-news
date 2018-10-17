@@ -1,7 +1,7 @@
 import React from 'react';
 import { HashRouter as Router, Route, Redirect } from 'react-router-dom'
 
-const PrivateRoute = ({ component: Component, ...rest, isAuthenticated }) => (
+const PrivateRoute = ({ component: Component, ...rest,  isAuthenticated }) => (
   <Route
     {...rest}
     render={props =>

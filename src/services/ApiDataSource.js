@@ -1,8 +1,8 @@
-import { BASE_URLS } from './CONSTANTS'
+import { BASE_URLS } from "./CONSTANTS";
 import firebase from "firebase/app";
 
-export const UID_LOCALSTORAGE_KEY = 'uid'
-export const REFRESH_TOKEN_LOCALSTORAGE_KEY = 'refresh_token'
+export const UID_LOCALSTORAGE_KEY = "uid";
+export const REFRESH_TOKEN_LOCALSTORAGE_KEY = "refresh_token";
 
 var firebaseConfig = {
   apiKey: "AIzaSyC_F0FZAzLbKaFN_p_IvBtkkswnxafl86s",
@@ -14,13 +14,12 @@ var firebaseConfig = {
 };
 
 class ApiDataSource {
-
   constructor(apiEnviroment) {
-    this.USER_ID = localStorage.getItem(UID_LOCALSTORAGE_KEY)
-    this.API_ENVIROMENT = apiEnviroment
-    
+    this.USER_ID = localStorage.getItem(UID_LOCALSTORAGE_KEY);
+    this.API_ENVIROMENT = apiEnviroment;
+
     if (!firebase.apps.length) {
-      firebase.initializeApp(firebaseConfig)
+      firebase.initializeApp(firebaseConfig);
     }
   }
 
@@ -28,11 +27,11 @@ class ApiDataSource {
     const action = {
       LOCAL: () => BASE_URLS.LOCAL,
       STAGE: () => BASE_URLS.STAGE,
-      PROD: () => BASE_URLS.PROD,
-    }
+      PROD: () => BASE_URLS.PROD
+    };
 
     return action[this.API_ENVIROMENT]();
   }
 }
 
-export default ApiDataSource
+export default ApiDataSource;

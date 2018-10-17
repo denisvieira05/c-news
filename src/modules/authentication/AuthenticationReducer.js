@@ -4,37 +4,40 @@ import {
   SIGNIN_ERROR,
   SIGNUP_ERROR,
   UPDATE_LOGGED_USER
-} from './AuthenticationTypes'
+} from "./AuthenticationTypes";
 import {
   UID_LOCALSTORAGE_KEY,
   REFRESH_TOKEN_LOCALSTORAGE_KEY
-} from '../../services/ApiDataSource'
+} from "../../services/ApiDataSource";
 
 const checkUserAuth = () => {
-  return localStorage.getItem(UID_LOCALSTORAGE_KEY) && localStorage.getItem(REFRESH_TOKEN_LOCALSTORAGE_KEY) 
-}
+  return (
+    localStorage.getItem(UID_LOCALSTORAGE_KEY) &&
+    localStorage.getItem(REFRESH_TOKEN_LOCALSTORAGE_KEY)
+  );
+};
 
 export const initial = {
-  isAuthenticated: checkUserAuth() ? true : false,
+  isAuthenticated: checkUserAuth(),
   isAuthenticating: false,
-  signInError: '',
-  signUpError: '',
+  signInError: "",
+  signUpError: "",
   loggedUser: null
-}
+};
 
 export default (state = initial, action) => {
   switch (action.type) {
     case UPDATE_AUTHORIZATION_STATE:
-      return { ...state, isAuthenticated: action.payload }
+      return { ...state, isAuthenticated: action.payload };
     case IS_AUTHENTICATING:
-      return { ...state, isAuthenticating: action.payload }
+      return { ...state, isAuthenticating: action.payload };
     case SIGNIN_ERROR:
-      return { ...state, signInError: action.payload }
+      return { ...state, signInError: action.payload };
     case SIGNUP_ERROR:
-      return { ...state, signUpError: action.payload }
+      return { ...state, signUpError: action.payload };
     case UPDATE_LOGGED_USER:
-      return { ...state, loggedUser: action.payload }
+      return { ...state, loggedUser: action.payload };
     default:
-      return state
+      return state;
   }
-}
+};

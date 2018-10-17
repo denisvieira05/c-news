@@ -1,6 +1,7 @@
-import React from 'react';
-import Colors from '../assets/Colors'
-import injectSheet from 'react-jss'
+import React from "react";
+import Colors from "../assets/Colors";
+import Strings from "../assets/Strings";
+import injectSheet from "react-jss";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import * as AuthenticationActions from "../modules/authentication/AuthenticationActions";
@@ -24,15 +25,21 @@ const SideMenu = ({
       </span>
     ))}
     {isAuthenticated ? (
-      <Link to="/profile" className={classes.linkStyle}
-          onClick={() => onClickItem()}>
+      <Link
+        to="/profile"
+        className={classes.linkStyle}
+        onClick={() => onClickItem()}
+      >
         {loggedUser ? loggedUser.username : null}
       </Link>
     ) : null}
     {isAuthenticated ? null : (
-      <Link to="/auth" className={classes.linkStyle}
-          onClick={() => onClickItem()}>
-        Log In
+      <Link
+        to="/auth"
+        className={classes.linkStyle}
+        onClick={() => onClickItem()}
+      >
+        {Strings.signIn}
       </Link>
     )}
   </div>
@@ -63,7 +70,7 @@ const styles = {
     marginLeft: "2em",
     marginTop: "1.563em",
     fontWeight: "bold",
-    display: "block",
+    display: "block"
   },
   navItem: {
     color: Colors.gray,
@@ -78,13 +85,16 @@ const styles = {
   }
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   isAuthenticated: state.authentication.isAuthenticated,
-  loggedUser: state.authentication.loggedUser,
-})
+  loggedUser: state.authentication.loggedUser
+});
 
 const mapDispatchToProps = {
-  getLoggedUser: AuthenticationActions.getLoggedUser,
-}
+  getLoggedUser: AuthenticationActions.getLoggedUser
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(injectSheet(styles)(SideMenu))
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(injectSheet(styles)(SideMenu));

@@ -1,2 +1,2 @@
-export const UPDATE_NEWS = 'UPDATE_NEWS'
-export const IS_FETCHING_NEWS = 'IS_FETCHING_NEWS'
+export const UPDATE_NEWS = "UPDATE_NEWS";
+export const IS_FETCHING_NEWS = "IS_FETCHING_NEWS";

@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Provider } from 'react-redux';
-import { BrowserRouter, Route } from 'react-router-dom';
-import MainApp from './modules/main-app/MainApp';
+import React from "react";
+import PropTypes from "prop-types";
+import { Provider } from "react-redux";
+import { BrowserRouter, Route } from "react-router-dom";
+import MainApp from "./modules/main-app/MainApp";
 
 const Application = ({ store }) => (
   <Provider store={store}>
@@ -13,7 +13,7 @@ const Application = ({ store }) => (
 );
 
 Application.propTypes = {
-  store: PropTypes.object.isRequired,
+  store: PropTypes.object.isRequired
 };
 
 export default Application;
