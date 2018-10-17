@@ -2,47 +2,48 @@ import {
   UPDATE_MY_INTERESTS,
   IS_FETCHING_MY_INTERESTS,
   IS_SAVING_MY_INTERESTS
-} from './ProfileTypes'
-import InterestsService from '../../services/interests/InterestsService'
+} from "./ProfileTypes";
+import InterestsService from "../../services/interests/InterestsService";
 
-export const updateMyInterests = (myInterests) => {
+export const updateMyInterests = myInterests => {
   return {
     type: UPDATE_MY_INTERESTS,
-    payload: myInterests,
-  }
-}
+    payload: myInterests
+  };
+};
 
-export const isFetchingMyInterests = (isFetching) => ({
+export const isFetchingMyInterests = isFetching => ({
   type: IS_FETCHING_MY_INTERESTS,
-  payload: isFetching,
-})
+  payload: isFetching
+});
 
-export const isSavingMyInterests = (isSavingMyInterests) => ({
+export const isSavingMyInterests = isSavingMyInterests => ({
   type: IS_SAVING_MY_INTERESTS,
-  payload: isSavingMyInterests,
-})
+  payload: isSavingMyInterests
+});
 
 export const loadMyInterests = () => {
-  return async (dispatch) => {
-    dispatch(isFetchingMyInterests(true))
+  return async dispatch => {
+    dispatch(isFetchingMyInterests(true));
 
-    const myInterests = await new InterestsService().getMyInterests()
+    const myInterests = await new InterestsService().getMyInterests();
 
-    dispatch(updateMyInterests(myInterests))
-    dispatch(isFetchingMyInterests(false))
-  }
-}
+    dispatch(updateMyInterests(myInterests));
+    dispatch(isFetchingMyInterests(false));
+  };
+};
 
-export const saveMyInterests = (myInterests) => {
-  return (dispatch) => {
-    dispatch(isSavingMyInterests(true))
+export const saveMyInterests = myInterests => {
+  return dispatch => {
+    dispatch(isSavingMyInterests(true));
 
-    new InterestsService().saveMyInterests(myInterests).then(() => {
-      dispatch(isSavingMyInterests(false))
-    })
-    .catch((error) => {
-      dispatch(isSavingMyInterests(false))
-    });
-
-  }
-}
+    new InterestsService()
+      .saveMyInterests(myInterests)
+      .then(() => {
+        dispatch(isSavingMyInterests(false));
+      })
+      .catch(error => {
+        dispatch(isSavingMyInterests(false));
+      });
+  };
+};

@@ -1,88 +1,91 @@
-
-import AuthenticationService from '../../services/authentication/AuthenticationService'
+import AuthenticationService from "../../services/authentication/AuthenticationService";
 import {
   IS_AUTHENTICATING,
   UPDATE_AUTHORIZATION_STATE,
   SIGNIN_ERROR,
   SIGNUP_ERROR,
   UPDATE_LOGGED_USER
-} from './AuthenticationTypes'
+} from "./AuthenticationTypes";
 
-export const updateAuthorizationState = (isAuthenticated) => ({
+export const updateAuthorizationState = isAuthenticated => ({
   type: UPDATE_AUTHORIZATION_STATE,
-  payload: isAuthenticated,
-})
+  payload: isAuthenticated
+});
 
-export const isAuthenticating = (isAuthenticating) => ({
+export const isAuthenticating = isAuthenticating => ({
   type: IS_AUTHENTICATING,
-  payload: isAuthenticating,
-})
+  payload: isAuthenticating
+});
 
-export const updateSignInError = (authError) => ({
+export const updateSignInError = authError => ({
   type: SIGNIN_ERROR,
-  payload: authError,
-})
+  payload: authError
+});
 
-export const updateSignUpError = (authError) => ({
+export const updateSignUpError = authError => ({
   type: SIGNUP_ERROR,
-  payload: authError,
-})
+  payload: authError
+});
 
-export const updateLoggedUser = (loggedUser) => ({
+export const updateLoggedUser = loggedUser => ({
   type: UPDATE_LOGGED_USER,
-  payload: loggedUser,
-})
+  payload: loggedUser
+});
 
 export const signIn = (email, password) => {
-  return (dispatch) => {
-    dispatch(isAuthenticating(true))
+  return dispatch => {
+    dispatch(isAuthenticating(true));
 
-    new AuthenticationService().signIn(email, password)
-    .then((snapshot) => {
-      dispatch(isAuthenticating(false))
-      dispatch(updateAuthorizationState(true))
-      dispatch(updateSignInError(''))
-      getLoggedUser()
-    })
-    .catch((error) => {
-      dispatch(isAuthenticating(false))
-      dispatch(updateSignInError(error.message))
-    });
-
-  }
-}
+    new AuthenticationService()
+      .signIn(email, password)
+      .then(snapshot => {
+        dispatch(isAuthenticating(false));
+        dispatch(updateAuthorizationState(true));
+        dispatch(updateSignInError(""));
+        getLoggedUser();
+      })
+      .catch(error => {
+        dispatch(isAuthenticating(false));
+        dispatch(updateSignInError(error.message));
+      });
+  };
+};
 
 export const signUp = (username, email, password) => {
-  return (dispatch) => {
-    dispatch(isAuthenticating(true))
-    new AuthenticationService().signUp(username, email, password)
-    .then(() => {
-        dispatch(isAuthenticating(false))
-        dispatch(updateAuthorizationState(true))
-        dispatch(updateSignUpError(''))
-    })
-    .catch((error) => {
-      dispatch(isAuthenticating(false))
-      dispatch(updateSignUpError(error.message))
-    });
-  }
-}
+  return dispatch => {
+    dispatch(isAuthenticating(true));
+    new AuthenticationService()
+      .signUp(username, email, password)
+      .then(() => {
+        dispatch(isAuthenticating(false));
+        dispatch(updateAuthorizationState(true));
+        dispatch(updateSignUpError(""));
+      })
+      .catch(error => {
+        dispatch(isAuthenticating(false));
+        dispatch(updateSignUpError(error.message));
+      });
+  };
+};
 
 export const signOut = () => {
-  return (dispatch) => {
-    new AuthenticationService().signOut().then((snapshot) => {
-      dispatch(isAuthenticating(false))
-      dispatch(updateAuthorizationState(false))
-      dispatch(updateLoggedUser(null))
-    }).catch((error) => {
-      dispatch(isAuthenticating(false))
-    });
-  }
-}
+  return dispatch => {
+    new AuthenticationService()
+      .signOut()
+      .then(snapshot => {
+        dispatch(isAuthenticating(false));
+        dispatch(updateAuthorizationState(false));
+        dispatch(updateLoggedUser(null));
+      })
+      .catch(error => {
+        dispatch(isAuthenticating(false));
+      });
+  };
+};
 
 export const getLoggedUser = () => {
-  return async (dispatch) => {
-    const loggedUser = await new AuthenticationService().getUser()
-    dispatch(updateLoggedUser(loggedUser))
-  }
-}
+  return async dispatch => {
+    const loggedUser = await new AuthenticationService().getUser();
+    dispatch(updateLoggedUser(loggedUser));
+  };
+};

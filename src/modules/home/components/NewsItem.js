@@ -1,47 +1,53 @@
-import React from 'react';
-import Colors from '../../../assets/Colors'
-import Strings from '../../../assets/Strings'
-import { DEFAULT_INTERESTS } from '../../profile/ProfileTypes'
-import injectSheet from 'react-jss'
+import React from "react";
+import Colors from "../../../assets/Colors";
+import Strings from "../../../assets/Strings";
+import { DEFAULT_INTERESTS } from "../../profile/ProfileTypes";
+import injectSheet from "react-jss";
+import AvatarAuthor from "../../../components/AvatarAuthor"
 
-const NewsItem = ({ classes, categoryName, title, image, author, authorImage, description, isFeaturedStyle, style }) => (
+const NewsItem = ({
+  classes,
+  categoryName,
+  title,
+  image,
+  author,
+  authorImage,
+  description,
+  isFeaturedStyle,
+  style
+}) => (
   <div className={classes.mainContainerStyle}>
-
     <label className={classes.categoryNameStyle}>{categoryName}</label>
-    
-    { image ? (
+
+    {image && (
       <div className={classes.newsMainImageContainer}>
         <div className={classes.readMoreContainer}>
           <div className={classes.blackTransparentContainer} />
           <label className={classes.readMoreText}>{Strings.readMore}</label>
         </div>
-        <img
-          alt="New"
-          className={classes.newsMainImageStyle}
-          src={image} />
+        <img alt="New" className={classes.newsMainImageStyle} src={image} />
       </div>
-    ) : null }
+    )}
 
     <h3 className={classes.itemTitle}>{title}</h3>
-    
-    <div className={classes.byAuthorContainer}>
-      <img className={classes.avatarImgStyle} src={authorImage} alt="Author"/>
-      <label className={classes.authorNameStyle}>{Strings.by} {author}</label>
-    </div>
+
+    <AvatarAuthor 
+      authorImage={authorImage}
+      authorName={author}
+    />
 
     <p className={classes.descriptionTextStyle}>{description}</p>
-
   </div>
 );
 
-const getCategoryNameStyle = (categoryName) => {
-  const defaultCategories = Object.values(DEFAULT_INTERESTS)
-  const category = defaultCategories.filter((item) => (item.id === categoryName))
+const getCategoryNameStyle = categoryName => {
+  const defaultCategories = Object.values(DEFAULT_INTERESTS);
+  const category = defaultCategories.filter(item => item.id === categoryName);
 
-  if (category[0]){
-    return category[0].color
+  if (category[0]) {
+    return category[0].color;
   }
-}
+};
 
 const styles = {
   "@media screen and (max-width: 750px)": {
@@ -113,27 +119,9 @@ const styles = {
       visibility: "visible"
     }
   },
-  byAuthorContainer: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center"
-  },
-  avatarImgStyle: {
-    width: "32px",
-    height: "32px",
-    borderRadius: "50%"
-  },
-  authorNameStyle: {
-    color: Colors.lightGray,
-    fontStyle: "italic",
-    fontSize: "0.813em",
-    marginLeft: "0.5em"
-  },
   newsTitleStyle: {
     fontSize: "1.125em"
   }
 };
 
-const StyledNewsItem = injectSheet(styles)(NewsItem)
-
-export default StyledNewsItem
+export default injectSheet(styles)(NewsItem);
