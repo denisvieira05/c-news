@@ -1,0 +1,22 @@
+{
+  "userArea": "User Area",
+  "signIn": "Sign In",
+  "userName": "Username",
+  "email": "Email",
+  "password": "Password",
+  "login": "Login",
+  "logout": "Log Out",
+  "signUp": "Sign Up",
+  "back": "Back",
+  "myInterests": "My Interests",
+  "politics": "Politics",
+  "business": "Business",
+  "tech": "Tech",
+  "science": "Science",
+  "sports": "Sports",
+  "save": "Save",
+  "backToHome": "Back to Home",
+  "by": "By",
+  "readMore": "Read More",
+  "welcome": "Welcome"
+}

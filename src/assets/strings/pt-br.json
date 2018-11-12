@@ -1,0 +1,22 @@
+{
+  "userArea": "Área do Usuário",
+  "signIn": "Entrar",
+  "userName": "Nome de Usuário",
+  "email": "Email",
+  "password": "Senha",
+  "login": "Entrar",
+  "logout": "Sair",
+  "signUp": "Cadastrar",
+  "back": "Voltar",
+  "myInterests": "Meus Interesses",
+  "politics": "Política",
+  "business": "Negócios",
+  "tech": "Tecnologia",
+  "science": "Ciência",
+  "sports": "Esportes",
+  "save": "Salvar",
+  "backToHome": "Voltar para página inicial",
+  "by": "Por",
+  "readMore": "Ler mais",
+  "welcome": "Bem vindo"
+}
